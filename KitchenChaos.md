@@ -25,3 +25,10 @@ Visual Studio 安装 Viasfora
 
 Visual Studio 安装 Force UTF-8(No BOM)
 
+# 命名规范
+
+
+## 重构
+  代码规范在这个博文上，课程学习按照作者的规范，个人编写自己的项目是私有变量用下划线表示私有变量
+   
+> https://kinoiralink.github.io/2023/09/26/CSharp%E6%8F%90%E7%A4%BA%E6%9C%AC/

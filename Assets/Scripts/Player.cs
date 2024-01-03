@@ -9,20 +9,11 @@ public class Player : MonoBehaviour
     private const int DIRECTION = 1;
 
     private bool isWalking;
+
+    [SerializeField]private GameInput gameInput;
     private void Update()
     {
-        Vector2 inputVector = new Vector2(0,0);
-        //方向
-        if (Input.GetKey(KeyCode.W))
-            inputVector.y = +DIRECTION;
-        if (Input.GetKey(KeyCode.S))
-            inputVector.y = -DIRECTION;
-        if (Input.GetKey(KeyCode.A))
-            inputVector.x = -DIRECTION;
-        if (Input.GetKey(KeyCode.D))
-            inputVector.x = +DIRECTION;
-        //移动
-        inputVector = inputVector.normalized;
+        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y);
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 

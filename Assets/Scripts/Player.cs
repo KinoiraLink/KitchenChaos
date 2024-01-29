@@ -92,7 +92,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent
             transform.position += moveDir * moveDistance;
         }
 
-        transform.forward = moveDir;
+        
 
         isWalking = moveDir != Vector3.zero;
 

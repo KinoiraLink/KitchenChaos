@@ -9,6 +9,8 @@ public class BaseCounter : MonoBehaviour,IKitchenObjectParent
 
     private KitchenObject kitchenObject;
 
+    public static event EventHandler OnAnyObjectPlaceHere;
+
     public virtual void Interact(Player player) { }
     public virtual void InteractAlternate(Player player) { }
     public void ClearKitchenObject() => kitchenObject = null;
@@ -16,7 +18,15 @@ public class BaseCounter : MonoBehaviour,IKitchenObjectParent
     public bool HasKitchenObject() => kitchenObject != null;
 
 
-    public void SetKitchenObject(KitchenObject kitchenObject) => this.kitchenObject = kitchenObject;
+    public void SetKitchenObject(KitchenObject kitchenObject) { 
+        this.kitchenObject = kitchenObject; 
+
+        if(kitchenObject != null )
+        {
+            OnAnyObjectPlaceHere?.Invoke(this, EventArgs.Empty);
+        }
+    
+    }
 
 
     public Transform GetKitchenObjectFollowTransform() => counterTopPoint;

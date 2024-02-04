@@ -13,6 +13,8 @@ public class CuttingCounter : BaseCounter,IHasProgress
 
     public event EventHandler OnCut;
 
+    public static event EventHandler OnAnyCut;
+
     public override void Interact(Player player)
     {
         if (!HasKitchenObject())
@@ -38,7 +40,13 @@ public class CuttingCounter : BaseCounter,IHasProgress
         }else
         {
             if(player.HasKitchenObject()) {
-
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                    }
+                }           
             }
             else
             {
@@ -55,6 +63,7 @@ public class CuttingCounter : BaseCounter,IHasProgress
             cuttingProgress++;
 
             OnCut?.Invoke(this, EventArgs.Empty);
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
 
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 

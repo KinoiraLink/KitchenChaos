@@ -109,6 +109,8 @@ public class CuttingCounter : BaseCounter,IHasProgress
         return cuttingRecipeSO != null;
     }
 
-
+    new public static void ResetStaticData() {
+        OnAnyCut = null;
+    }
 
 }

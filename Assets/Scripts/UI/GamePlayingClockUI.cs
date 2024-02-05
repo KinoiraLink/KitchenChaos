@@ -11,4 +11,5 @@ public class GamePlayingClockUI : MonoBehaviour
     {
         timerImage.fillAmount = KitchenGameManager.Instance.GetGamePlayingTimerNormalized();
     }
+
 }
